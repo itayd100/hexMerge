@@ -1,3 +1,11 @@
+'''
+    File name: main.py
+    Author: Itay Dagan
+    Date created: 06/01/2019
+    Python Version: 3.7
+'''
+
+
 import kivy
 kivy.require("1.10.0")
 
