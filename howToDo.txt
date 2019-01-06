@@ -1,0 +1,1 @@
+srec_cat.exe samd21_sam_ba_iotspot_2g.hex -Intel iotspot_2g_v0.9.2.hex -Intel -o iotspot_2g_v0.9.2_with_bootloader.hex -Intel  
