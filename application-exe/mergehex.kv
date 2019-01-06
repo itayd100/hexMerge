@@ -1,0 +1,56 @@
+# ---------- mergehex.kv  ----------
+
+# Custom button
+<CustButton@Button>:
+    font_size: 32
+
+# Define id so I can refer to the CalcGridLayout
+# class functions
+# Display points to the entry widget
+<mergehexGridLayout>:
+    id: mergehex
+    display: entry
+    rows: 5
+    padding: 10
+    spacing: 10
+
+    # Where input is displayed
+    BoxLayout:
+        TextInput:
+            id: entry
+            font_size: 32
+            multiline: False
+
+    # When buttons are pressed update the entry
+    BoxLayout:
+        spacing: 10
+        CustButton:
+            text: "select bootloader"
+            on_press: entry.text = self.text
+            on_press: mergehex.selectBoot(filechooser1.path, filechooser1.selection)
+            on_press: app.filenameBoot = filechooser1.selection
+            on_press: mergehex.printit(app.filenameBoot)
+        FileChooserListView:
+            id: filechooser1
+            on_selection: mergehex.selected(filechooser1.selection)
+
+    BoxLayout:
+        spacing: 10
+        CustButton:
+            text: "select application"
+            on_press: entry.text = self.text
+            on_press: mergehex.selectApp(filechooser2.path, filechooser2.selection)
+            on_press: app.filenameApp = filechooser2.selection
+            on_press: mergehex.printit(app.filenameApp)
+        FileChooserListView:
+            id: filechooser2
+            on_selection: mergehex.selected(filechooser2.selection)
+
+
+    BoxLayout:
+        spacing: 10
+        CustButton:
+            text: "Merge"
+            on_press: entry.text = "Merging"
+            on_press: mergehex.merge(app.filenameBoot, app.filenameApp, app.filenameDes)
+            on_release: entry.text = "Done!"
